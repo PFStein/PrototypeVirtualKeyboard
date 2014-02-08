@@ -8,6 +8,7 @@ import gui.keytype.ButtonFactory;
 import gui.keytype.KeyboardButton;
 import gui.keytype.KeyboardButtonFactory;
 import gui.mouse.MouseMotionDemo;
+import gui.vistor.KeyboardTextArea;
 
 import java.awt.GridLayout;
 
@@ -24,14 +25,14 @@ public class KeyboardPrototype extends JFrame {
     //Grid layout changes the space between buttons
     private JPanel parent = new JPanel(new GridLayout(3, 10));
     //Text area
-    private JTextArea jTextArea;
+    private KeyboardTextArea textArea;
     //Buttons
     private KeyboardButton[][] buttons;
     
     private final ButtonFactory keyFactory = new KeyboardButtonFactory();
 
     private static final String[][] key = { 
-    	   {"Backspace","Space"},
+    	   {"Backspace","Space","Shift"},
     	   {"Q", "W", "E", "R", "T", "Y", "U", "I", "O","P"},
     	   {"A","S","D","F","G","H","J","K","L"},
     	   {"Z","X","C","V","B","N","M"}
@@ -53,8 +54,8 @@ public class KeyboardPrototype extends JFrame {
     	frame.setLayout(new BoxLayout(frame, BoxLayout.Y_AXIS));
     	
     	//add a text area
-    	jTextArea = new JTextArea();
-    	parent.add(jTextArea);
+    	textArea = new KeyboardTextArea();
+    	parent.add(textArea);
     	//Create all of the virtual keyboard buttons
     	createAllButtons();  
     	//Create mouse listener
@@ -94,7 +95,7 @@ public class KeyboardPrototype extends JFrame {
         buttons[row][column].putClientProperty("key", key[row][column]);
         
         //Give a new listener
-        buttons[row][column].addActionListener(new KeyboardButtonActionListener(this.jTextArea));
+        buttons[row][column].addActionListener(new KeyboardButtonActionListener(this.textArea));
         
         //add to the panel
         parent.add(buttons[row][column]);

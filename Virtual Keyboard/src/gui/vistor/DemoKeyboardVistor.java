@@ -8,46 +8,46 @@ import javax.swing.text.Document;
 
 import gui.keytype.BackspaceButton;
 import gui.keytype.CharacterButton;
+import gui.keytype.ShiftButton;
 import gui.keytype.SpaceButton;
 
 public class DemoKeyboardVistor implements KeyboardVistor{
 	
-	private JTextArea outputArea;
+	private KeyboardTextArea outputArea;
+	private boolean capsLockOn;
+	private int numShift;
 
-	public DemoKeyboardVistor(JTextArea newOutputArea) {
+	public DemoKeyboardVistor(KeyboardTextArea newOutputArea) {
 		// TODO Auto-generated constructor stub
 		outputArea = newOutputArea;
+		this.capsLockOn = false;
+		this.numShift = 0;
 	}
 
 	@Override
 	public void visit(CharacterButton b) {
 		// TODO Auto-generated method stub
 		//Put the text in the text box
-		outputArea.append(b.getClientProperty("key").toString().toLowerCase());
+		this.outputArea.addCharacter(b.getClientProperty("key").toString());
 	}
 
 	@Override
 	public void visit(BackspaceButton b) {
-		// TODO Auto-generated method stub
-		Document doc = outputArea.getDocument();
-		int docLength = doc.getLength();
-		try {
-			//only do this if the document has something in it
-			if(docLength >= 1){
-				doc.remove(doc.getLength() - 1, 1);
-			}
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			// Should only happen if 
-			e.printStackTrace();
-		}
+		// TODO Move function body into a 
+		this.outputArea.backspace();
 	}
 
 	@Override
 	public void visit(SpaceButton b) {
 		// TODO Auto-generated method stub
-		outputArea.append(" ");
+		this.outputArea.addCharacter(" ");
 		
 	}
-
+	
+	@Override
+	public void visit(ShiftButton b) {
+		// TODO Auto-generated method stub
+		this.outputArea.updateCapsLock();
+	}
+	
 }

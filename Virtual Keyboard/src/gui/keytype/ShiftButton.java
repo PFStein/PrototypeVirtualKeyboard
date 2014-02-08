@@ -1,14 +1,17 @@
 package gui.keytype;
+
+import gui.vistor.KeyboardVistor;
+
 /**
  * @author Patrick Stein
  */
-import gui.vistor.KeyboardVistor;
 
-public class SpaceButton extends KeyboardButton{
+public class ShiftButton extends KeyboardButton{
 
-	public SpaceButton() {
-		super("Space");
+
+	public ShiftButton() {
 		// TODO Auto-generated constructor stub
+		super("Shift");
 	}
 
 	@Override

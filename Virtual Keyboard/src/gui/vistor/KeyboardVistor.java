@@ -4,6 +4,7 @@ package gui.vistor;
  */
 import gui.keytype.BackspaceButton;
 import gui.keytype.CharacterButton;
+import gui.keytype.ShiftButton;
 import gui.keytype.SpaceButton;
 
 public interface KeyboardVistor {
@@ -13,5 +14,7 @@ public interface KeyboardVistor {
 	public void visit(BackspaceButton b);
 
 	public void visit(SpaceButton b);
+	
+	public void visit(ShiftButton b);
 
 }
